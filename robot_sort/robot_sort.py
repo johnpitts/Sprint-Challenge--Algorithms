@@ -92,51 +92,51 @@ class SortingRobot:
         """
         return self._light == "ON"
     def greater_than_switcheroo(self):
-        robot.swap_item()
-        robot.move_left()
-        robot.swap_item()
-        robot.set_light_off(); print("light OFF")
-        robot.move_right()
+        self.swap_item()
+        self.move_left()
+        self.swap_item()
+        self.set_light_off(); print("light OFF")
+        self.move_right()
         
     def less_than_switcheroo(self):
-        robot.swap_item()
-        robot.move_right()
-        robot.swap_item()
-        robot.set_light_off(); print("light OFF, shit")
-        robot.move_left
+        self.swap_item()
+        self.move_right()
+        self.swap_item()
+        self.set_light_off(); print("light OFF, shit")
+        self.move_left
 
     def put_back_left(self):
-        robot.move_left()
-        robot.swap_item()
-        robot.move_right()
+        self.move_left()
+        self.swap_item()
+        self.move_right()
 
     def put_back_right(self):
-        robot.move_right()
-        robot.swap_item()
-        robot.move_left()
+        self.move_right()
+        self.swap_item()
+        self.move_left()
         
     def bubble_left(self):
-        robot.set_light_on()
-        while robot.can_move_left():
-            robot.swap_item()
-            robot.move_left()
-            if robot.compare_item() == -1:
-                robot.less_than_switcheroo()
+        self.set_light_on()
+        while self.can_move_left():
+            self.swap_item()
+            self.move_left()
+            if self.compare_item() == -1:
+                self.less_than_switcheroo()
             else:
-                robot.put_back_right()
+                self.put_back_right()
 
     def bubble_right(self):
 
-        robot.set_light_on()
-        while robot.can_move_right():
-            robot.swap_item()
-            robot.move_right()
+        self.set_light_on()
+        while self.can_move_right():
+            self.swap_item()
+            self.move_right()
 
-            if robot.compare_item() == 1:
-                robot.greater_than_switcheroo()
+            if self.compare_item() == 1:
+                self.greater_than_switcheroo()
             # you could have an else if here and implement a new function for == 0 same
             else:
-                robot.put_back_left()
+                self.put_back_left()
             
 
 
@@ -145,13 +145,11 @@ class SortingRobot:
         
         print("\n begin sorting \n")
 
-        while robot.light_is_on() != True:
+        while self.light_is_on() != True:
 
         #for i in range(len(l)):
-            robot.bubble_right()
-            print("bubble right complete")
-            robot.bubble_left()
-            print("left")
+            self.bubble_right()
+            self.bubble_left()
 
 
         # you can implement a count such that you reduce the # of comparisons by 1 each direction after the first pass.
