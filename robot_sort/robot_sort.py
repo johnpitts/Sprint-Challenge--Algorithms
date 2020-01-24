@@ -91,13 +91,71 @@ class SortingRobot:
         Returns True if the robot's light is on and False otherwise.
         """
         return self._light == "ON"
+    def greater_than_switcheroo(self):
+        self.swap_item()
+        self.move_left()
+        self.swap_item()
+        self.set_light_off(); print("light OFF")
+        self.move_right()
+        
+    def less_than_switcheroo(self):
+        self.swap_item()
+        self.move_right()
+        self.swap_item()
+        self.set_light_off(); print("light OFF, shit")
+        self.move_left
+
+    def put_back_left(self):
+        self.move_left()
+        self.swap_item()
+        self.move_right()
+
+    def put_back_right(self):
+        self.move_right()
+        self.swap_item()
+        self.move_left()
+        
+    def bubble_left(self):
+        self.set_light_on()
+        while self.can_move_left():
+            self.swap_item()
+            self.move_left()
+            if self.compare_item() == -1:
+                self.less_than_switcheroo()
+            else:
+                self.put_back_right()
+
+    def bubble_right(self):
+
+        self.set_light_on()
+        while self.can_move_right():
+            self.swap_item()
+            self.move_right()
+
+            if self.compare_item() == 1:
+                self.greater_than_switcheroo()
+            # you could have an else if here and implement a new function for == 0 same
+            else:
+                self.put_back_left()
+            
+
+
 
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        pass
+        
+        print("\n begin sorting \n")
+
+        while self.light_is_on() != True:
+
+        #for i in range(len(l)):
+            self.bubble_right()
+            self.bubble_left()
+
+
+        # you can implement a count such that you reduce the # of comparisons by 1 each direction after the first pass.
+        # not sure I"m allowed to use a variable to count tho.
+
+
 
 
 if __name__ == "__main__":
@@ -109,4 +167,4 @@ if __name__ == "__main__":
     robot = SortingRobot(l)
 
     robot.sort()
-    print(robot._list)
+    print(robot._list); print("\n")
